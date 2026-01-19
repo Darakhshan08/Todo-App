@@ -127,12 +127,12 @@ All tasks modify existing specification markdown files in `specs/` directory:
 
 **Purpose**: Comprehensive validation of all spec refinements and completion documentation
 
-- [ ] T028 Validate all 13 functional requirements (FR-001 through FR-013) have been applied to specs 001, 003, 004 by reading each requirement and its target location
-- [ ] T029 Perform acceptance scenario verification: Read each updated spec and confirm all 15 acceptance scenarios from spec 006 are satisfied
-- [ ] T030 Verify all 7 success criteria from spec 006 are met (SC-001 through SC-007) by checking each criterion against the refined specs
-- [ ] T031 Create git commit with all spec refinements and descriptive commit message "Apply CLI spec refinements: multi-line input, field semantics, retry limits, error consistency, display format"
-- [ ] T032 Update specs/006-refine-cli-specs/spec.md status from "Draft" to "Complete"
-- [ ] T033 Document completion summary in specs/006-refine-cli-specs/COMPLETION.md with list of all changes applied
+- [X] T028 Validate all 13 functional requirements (FR-001 through FR-013) have been applied to specs 001, 003, 004 by reading each requirement and its target location
+- [X] T029 Perform acceptance scenario verification: Read each updated spec and confirm all 15 acceptance scenarios from spec 006 are satisfied
+- [X] T030 Verify all 7 success criteria from spec 006 are met (SC-001 through SC-007) by checking each criterion against the refined specs
+- [X] T031 Create git commit with all spec refinements and descriptive commit message "Apply CLI spec refinements: multi-line input, field semantics, retry limits, error consistency, display format"
+- [X] T032 Update specs/006-refine-cli-specs/spec.md status from "Draft" to "Complete"
+- [X] T033 Document completion summary in specs/006-refine-cli-specs/COMPLETION.md with list of all changes applied
 
 ---
 

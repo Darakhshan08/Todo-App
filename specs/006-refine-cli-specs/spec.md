@@ -2,7 +2,7 @@
 
 **Feature Branch**: `006-refine-cli-specs`
 **Created**: 2026-01-19
-**Status**: Draft
+**Status**: Complete
 **Input**: Refine existing Phase I specifications to address CLI design issues: multi-line input, field skip/clear distinction, and confirmation retry limits
 
 ## User Scenarios & Testing
