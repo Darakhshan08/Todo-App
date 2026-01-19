@@ -64,7 +64,8 @@ As a user, when I attempt to delete a task that doesn't exist, I receive a clear
 - **Delete Already-Deleted Task**: When user attempts to delete a task ID that was previously deleted in the same session, system displays "Error: Task with ID 'task-XXX' not found."
 - **Delete Complete vs Incomplete Tasks**: Deletion works identically for both complete and incomplete tasks. Status does not affect deletion capability.
 - **Confirmation Input Variations**: System accepts "yes", "y", "YES", "Yes" as confirmation, and "no", "n", "NO", "No" as cancellation (case-insensitive).
-- **Invalid Confirmation Input**: When user enters something other than yes/no/y/n at confirmation prompt, system displays "Invalid input. Please enter 'yes' or 'no'." and re-prompts.
+- **Invalid Confirmation Input**: When user enters something other than yes/no/y/n at confirmation prompt, system displays "Error: Invalid input. Please enter 'yes' or 'no'." and re-prompts up to 3 times before exhausting retries.
+- **Confirmation Retry Exhaustion**: When user provides invalid confirmation input 3 times consecutively, the system cancels the deletion operation, displays the max retry error message, and returns to the main menu without deleting the task.
 
 ## Requirements
 
@@ -78,7 +79,7 @@ As a user, when I attempt to delete a task that doesn't exist, I receive a clear
 - **FR-006**: System MUST prompt for deletion confirmation with message "Are you sure you want to delete task-XXX: [title]? (yes/no)"
 - **FR-007**: System MUST accept "yes", "y", "YES", "Yes" as confirmation to proceed with deletion (case-insensitive)
 - **FR-008**: System MUST accept "no", "n", "NO", "No" as cancellation of deletion (case-insensitive)
-- **FR-009**: System MUST reject invalid confirmation inputs and re-prompt with "Invalid input. Please enter 'yes' or 'no'."
+- **FR-009**: System MUST accept up to 3 invalid confirmation attempts, re-prompting with 'Error: Invalid input. Please enter 'yes' or 'no'.' after each invalid entry. After the 3rd invalid attempt, system displays 'Error: Maximum retry attempts exceeded. Returning to main menu.' and cancels the deletion.
 - **FR-010**: System MUST permanently remove the task from the in-memory data structure when confirmed
 - **FR-011**: System MUST NOT renumber or reassign task IDs after deletion (remaining tasks keep their original IDs)
 - **FR-012**: System MUST display confirmation message "Task 'task-XXX: [title]' has been deleted successfully." after successful deletion

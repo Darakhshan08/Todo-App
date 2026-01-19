@@ -28,10 +28,10 @@ All tasks modify existing specification markdown files in `specs/` directory:
 
 **Purpose**: Validate existing specs and create backup before modifications
 
-- [ ] T001 Read and validate specs/001-add-task/spec.md exists and is accessible
-- [ ] T002 Read and validate specs/003-update-task/spec.md exists and is accessible
-- [ ] T003 Read and validate specs/004-delete-task/spec.md exists and is accessible
-- [ ] T004 Create git commit checkpoint before spec modifications with message "Checkpoint before CLI spec refinements"
+- [X] T001 Read and validate specs/001-add-task/spec.md exists and is accessible
+- [X] T002 Read and validate specs/003-update-task/spec.md exists and is accessible
+- [X] T003 Read and validate specs/004-delete-task/spec.md exists and is accessible
+- [X] T004 Create git commit checkpoint before spec modifications with message "Checkpoint before CLI spec refinements"
 
 ---
 
@@ -43,10 +43,10 @@ All tasks modify existing specification markdown files in `specs/` directory:
 
 ### Implementation for User Story 1
 
-- [ ] T005 [P] [US1] Update specs/001-add-task/spec.md edge cases section: Add new edge case "Multi-line Description Input Method" with text "To enter multi-line descriptions, users enter literal `\n` escape sequences in console input, which the system interprets as newline characters for storage and display. Example: Entering 'Step 1\nStep 2\nStep 3' creates a three-line description."
-- [ ] T006 [P] [US1] Update specs/003-update-task/spec.md edge cases section: Add new edge case "Multi-line Description Input Method" with identical text as spec 001 for consistency
-- [ ] T007 [US1] Update specs/001-add-task/spec.md edge case "Multi-line Description": Modify existing case to reference the new input method and clarify that `\n` sequences are parsed during input processing
-- [ ] T008 [US1] Validate both specs (001 and 003) contain consistent multi-line input documentation by reading both files and comparing the Multi-line Description Input Method edge case text
+- [X] T005 [P] [US1] Update specs/001-add-task/spec.md edge cases section: Add new edge case "Multi-line Description Input Method" with text "To enter multi-line descriptions, users enter literal `\n` escape sequences in console input, which the system interprets as newline characters for storage and display. Example: Entering 'Step 1\nStep 2\nStep 3' creates a three-line description."
+- [X] T006 [P] [US1] Update specs/003-update-task/spec.md edge cases section: Add new edge case "Multi-line Description Input Method" with identical text as spec 001 for consistency
+- [X] T007 [US1] Update specs/001-add-task/spec.md edge case "Multi-line Description": Modify existing case to reference the new input method and clarify that `\n` sequences are parsed during input processing
+- [X] T008 [US1] Validate both specs (001 and 003) contain consistent multi-line input documentation by reading both files and comparing the Multi-line Description Input Method edge case text
 
 **Checkpoint**: Specs 001 and 003 now have deterministic multi-line input method documented
 
@@ -60,13 +60,13 @@ All tasks modify existing specification markdown files in `specs/` directory:
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Update specs/003-update-task/spec.md FR-006: Change requirement text to "System MUST prompt the user to enter a new title with the instruction 'Press Enter to keep current title'"
-- [ ] T010 [US2] Update specs/003-update-task/spec.md FR-007: Change requirement text to "System MUST prompt the user to enter a new description with the instruction 'Press Enter to keep current description'"
-- [ ] T011 [US2] Update specs/003-update-task/spec.md edge case "Cancel Update Operation": Reword to "Field Skip (Keep Current Value) - When user presses Enter without text for a field, the system keeps the current value unchanged (skip update). The field is not cleared."
-- [ ] T012 [US2] Add new edge case to specs/003-update-task/spec.md: "Field Clearing Not Supported - Phase I does not support clearing a field to empty after it has been set. To clear a description, users must update it to a single space character or wait for future phases that support explicit clearing."
-- [ ] T013 [US2] Add new edge case to specs/003-update-task/spec.md: "No Changes Made - When user skips both title and description updates (presses Enter for both), the task remains unchanged and the system displays 'No changes made. Task remains unchanged.'"
-- [ ] T014 [US2] Validate spec 003 has clear distinction between skip and clear semantics by reading FR-006, FR-007, and all updated edge cases
-- [ ] T015 [US2] Remove or update specs/003-update-task/spec.md User Story 2 Acceptance Scenario 3 (field clearing scenario): This scenario contradicts the "Field Clearing Not Supported" design decision. Either remove it entirely or update it to test field skip behavior instead.
+- [X] T009 [US2] Update specs/003-update-task/spec.md FR-006: Change requirement text to "System MUST prompt the user to enter a new title with the instruction 'Press Enter to keep current title'"
+- [X] T010 [US2] Update specs/003-update-task/spec.md FR-007: Change requirement text to "System MUST prompt the user to enter a new description with the instruction 'Press Enter to keep current description'"
+- [X] T011 [US2] Update specs/003-update-task/spec.md edge case "Cancel Update Operation": Reword to "Field Skip (Keep Current Value) - When user presses Enter without text for a field, the system keeps the current value unchanged (skip update). The field is not cleared."
+- [X] T012 [US2] Add new edge case to specs/003-update-task/spec.md: "Field Clearing Not Supported - Phase I does not support clearing a field to empty after it has been set. To clear a description, users must update it to a single space character or wait for future phases that support explicit clearing."
+- [X] T013 [US2] Add new edge case to specs/003-update-task/spec.md: "No Changes Made - When user skips both title and description updates (presses Enter for both), the task remains unchanged and the system displays 'No changes made. Task remains unchanged.'"
+- [X] T014 [US2] Validate spec 003 has clear distinction between skip and clear semantics by reading FR-006, FR-007, and all updated edge cases
+- [X] T015 [US2] Remove or update specs/003-update-task/spec.md User Story 2 Acceptance Scenario 3 (field clearing scenario): This scenario contradicts the "Field Clearing Not Supported" design decision. Either remove it entirely or update it to test field skip behavior instead.
 
 **Checkpoint**: Spec 003 now unambiguously defines Enter key = skip update, with field clearing deferred
 
@@ -80,10 +80,10 @@ All tasks modify existing specification markdown files in `specs/` directory:
 
 ### Implementation for User Story 3
 
-- [ ] T016 [US3] Update specs/004-delete-task/spec.md FR-009: Replace entire requirement text with "System MUST accept up to 3 invalid confirmation attempts, re-prompting with 'Error: Invalid input. Please enter 'yes' or 'no'.' after each invalid entry. After the 3rd invalid attempt, system displays 'Error: Maximum retry attempts exceeded. Returning to main menu.' and cancels the deletion."
-- [ ] T017 [US3] Add new edge case to specs/004-delete-task/spec.md: "Confirmation Retry Exhaustion - When user provides invalid confirmation input 3 times consecutively, the system cancels the deletion operation, displays the max retry error message, and returns to the main menu without deleting the task."
-- [ ] T018 [US3] Update specs/004-delete-task/spec.md edge case "Invalid Confirmation Input": Add clarification that system re-prompts up to 3 times before exhausting retries
-- [ ] T019 [US3] Validate spec 004 has clear retry limit of 3 attempts documented by reading FR-009 and all confirmation-related edge cases
+- [X] T016 [US3] Update specs/004-delete-task/spec.md FR-009: Replace entire requirement text with "System MUST accept up to 3 invalid confirmation attempts, re-prompting with 'Error: Invalid input. Please enter 'yes' or 'no'.' after each invalid entry. After the 3rd invalid attempt, system displays 'Error: Maximum retry attempts exceeded. Returning to main menu.' and cancels the deletion."
+- [X] T017 [US3] Add new edge case to specs/004-delete-task/spec.md: "Confirmation Retry Exhaustion - When user provides invalid confirmation input 3 times consecutively, the system cancels the deletion operation, displays the max retry error message, and returns to the main menu without deleting the task."
+- [X] T018 [US3] Update specs/004-delete-task/spec.md edge case "Invalid Confirmation Input": Add clarification that system re-prompts up to 3 times before exhausting retries
+- [X] T019 [US3] Validate spec 004 has clear retry limit of 3 attempts documented by reading FR-009 and all confirmation-related edge cases
 
 **Checkpoint**: Spec 004 now prevents infinite loops with maximum 3 retry attempts
 
@@ -97,12 +97,12 @@ All tasks modify existing specification markdown files in `specs/` directory:
 
 ### Implementation for User Story 4
 
-- [ ] T020 [P] [US4] Review specs/001-add-task/spec.md: Search for all error messages and verify they have "Error:" prefix (should already be correct, document findings)
-- [ ] T021 [P] [US4] Review specs/002-view-task-list/spec.md: Search for all error messages and verify they have "Error:" prefix (should already be correct, document findings)
-- [ ] T022 [P] [US4] Review specs/003-update-task/spec.md: Search for all error messages and ensure "Error:" prefix consistency (verify no changes needed after US2 updates)
-- [ ] T023 [P] [US4] Review specs/005-mark-complete/spec.md: Search for all error messages and verify they have "Error:" prefix (should already be correct, document findings)
-- [ ] T024 [US4] Validate specs/004-delete-task/spec.md FR-009 now uses "Error: Invalid input. Please enter 'yes' or 'no'." after T016 update
-- [ ] T025 [US4] Perform final cross-spec review of all error messages in specs 001-005 for format consistency by reading all error message text
+- [X] T020 [P] [US4] Review specs/001-add-task/spec.md: Search for all error messages and verify they have "Error:" prefix (should already be correct, document findings)
+- [X] T021 [P] [US4] Review specs/002-view-task-list/spec.md: Search for all error messages and verify they have "Error:" prefix (should already be correct, document findings)
+- [X] T022 [P] [US4] Review specs/003-update-task/spec.md: Search for all error messages and ensure "Error:" prefix consistency (verify no changes needed after US2 updates)
+- [X] T023 [P] [US4] Review specs/005-mark-complete/spec.md: Search for all error messages and verify they have "Error:" prefix (should already be correct, document findings)
+- [X] T024 [US4] Validate specs/004-delete-task/spec.md FR-009 now uses "Error: Invalid input. Please enter 'yes' or 'no'." after T016 update
+- [X] T025 [US4] Perform final cross-spec review of all error messages in specs 001-005 for format consistency by reading all error message text
 
 **Checkpoint**: All Phase I specs now use consistent error message format
 
@@ -116,8 +116,8 @@ All tasks modify existing specification markdown files in `specs/` directory:
 
 ### Implementation for Display Format
 
-- [ ] T026 Update specs/003-update-task/spec.md FR-005: Append exact format specification to requirement text - "System MUST display current task details before prompting for updates in the format:\n```\nTask ID: task-XXX\nCurrent title: [current title value]\nCurrent description: [current description value or 'No description']\n```"
-- [ ] T027 Validate spec 003 FR-005 contains complete display format specification by reading the updated requirement text
+- [X] T026 Update specs/003-update-task/spec.md FR-005: Append exact format specification to requirement text - "System MUST display current task details before prompting for updates in the format:\n```\nTask ID: task-XXX\nCurrent title: [current title value]\nCurrent description: [current description value or 'No description']\n```"
+- [X] T027 Validate spec 003 FR-005 contains complete display format specification by reading the updated requirement text
 
 **Checkpoint**: Spec 003 now has unambiguous display format for current values
 

@@ -63,7 +63,8 @@ As a user, every task I create receives a unique identifier so that I can refere
 - **Excessively Long Description**: When user enters a description longer than 1000 characters, system displays error "Error: Description exceeds maximum length of 1000 characters. Please shorten your description." and re-prompts.
 - **Special Characters in Title**: System accepts titles with special characters (!, @, #, etc.), punctuation, and Unicode characters without error.
 - **Numeric-Only Title**: System accepts titles that consist entirely of numbers (e.g., "2026") without error.
-- **Multi-line Description**: When user enters a description containing newlines or line breaks, system preserves the formatting and stores the multi-line text.
+- **Multi-line Description**: When user enters a description containing newlines or line breaks (via `\n` escape sequences as described below), system preserves the formatting and stores the multi-line text.
+- **Multi-line Description Input Method**: To enter multi-line descriptions, users enter literal `\n` escape sequences in console input, which the system interprets as newline characters for storage and display. Example: Entering 'Step 1\nStep 2\nStep 3' creates a three-line description.
 
 ## Requirements
 

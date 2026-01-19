@@ -35,7 +35,7 @@ As a user, I can update a task's description so that I can add context, update i
 
 1. **Given** task-001 exists with description "Buy from Whole Foods", **When** I update the description to "Buy from Trader Joe's or Whole Foods", **Then** the description changes accordingly
 2. **Given** task-001 exists without a description, **When** I add a description "Remember to use coupons", **Then** the description is saved and displayed
-3. **Given** task-001 exists with a description, **When** I clear the description (enter empty text), **Then** the description becomes empty
+3. **Given** task-001 exists with a description, **When** I press Enter without text for the description prompt, **Then** the description remains unchanged (field skip behavior)
 
 ---
 
@@ -63,7 +63,10 @@ As a user, I can specify which task to update by entering its task ID so that I 
 - **Description Length Validation**: When user provides a description longer than 1000 characters during update, system displays "Error: Description exceeds maximum length of 1000 characters." and re-prompts.
 - **Update with Same Value**: When user updates a field to the same value it already has, the update succeeds without error (idempotent operation).
 - **Partial Updates**: When user updates only the title (leaving description unchanged) or only the description (leaving title unchanged), only the specified field changes while the other remains intact.
-- **Cancel Update Operation**: When user decides not to update a field and wants to keep the current value, they can press Enter without text to skip updating that field.
+- **Field Skip (Keep Current Value)**: When user presses Enter without text for a field, the system keeps the current value unchanged (skip update). The field is not cleared.
+- **Field Clearing Not Supported**: Phase I does not support clearing a field to empty after it has been set. To clear a description, users must update it to a single space character or wait for future phases that support explicit clearing.
+- **No Changes Made**: When user skips both title and description updates (presses Enter for both), the task remains unchanged and the system displays 'No changes made. Task remains unchanged.'
+- **Multi-line Description Input Method**: To enter multi-line descriptions, users enter literal `\n` escape sequences in console input, which the system interprets as newline characters for storage and display. Example: Entering 'Step 1\nStep 2\nStep 3' creates a three-line description.
 
 ## Requirements
 
@@ -73,9 +76,14 @@ As a user, I can specify which task to update by entering its task ID so that I 
 - **FR-002**: System MUST validate that the provided task ID exists in the task list
 - **FR-003**: System MUST reject task IDs that don't exist with error message "Error: Task with ID 'task-XXX' not found."
 - **FR-004**: System MUST validate task ID format matches "task-NNN" pattern (e.g., task-001, task-042)
-- **FR-005**: System MUST display the current task details (title and description) before prompting for updates
-- **FR-006**: System MUST prompt the user to enter a new title with the option to press Enter to keep the current title
-- **FR-007**: System MUST prompt the user to enter a new description with the option to press Enter to keep the current description
+- **FR-005**: System MUST display current task details before prompting for updates in the format:
+```
+Task ID: task-XXX
+Current title: [current title value]
+Current description: [current description value or 'No description']
+```
+- **FR-006**: System MUST prompt the user to enter a new title with the instruction 'Press Enter to keep current title'
+- **FR-007**: System MUST prompt the user to enter a new description with the instruction 'Press Enter to keep current description'
 - **FR-008**: System MUST allow users to update only the title, only the description, or both
 - **FR-009**: System MUST validate new title is not empty (after trimming whitespace) if provided
 - **FR-010**: System MUST validate new title does not exceed 200 characters
