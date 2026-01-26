@@ -230,7 +230,7 @@ class TaskService:
             - (False, "error message") if validation fails or task not found
         """
         # Validate priority
-        is_valid, error = self.validator.validate_priority(new_priority.value)
+        is_valid, error, _ = self.validator.validate_priority(new_priority.value)
         if not is_valid:
             return False, error
 
@@ -256,18 +256,26 @@ class TaskService:
             - (True, "") if successful
             - (False, "error message") if validation fails or task not found
         """
-        # Validate tags
-        is_valid, error = self.validator.validate_tags(new_tags)
-        if not is_valid:
-            return False, error
-
         # Get task
         task = self.task_store.get(task_id)
         if not task:
             return False, f"Task with ID {task_id} not found"
 
-        # Update tags (normalize to lowercase)
-        task.tags = [tag.strip().lower() for tag in new_tags if tag.strip()]
+        # Update tags (normalize to lowercase and ensure all are strings)
+        # Filter out non-string items and normalize
+        normalized_tags = []
+        for tag in new_tags:
+            # Ensure tag is a string
+            if isinstance(tag, str):
+                tag_str = tag.strip().lower()
+                if tag_str:  # Only add non-empty tags
+                    normalized_tags.append(tag_str)
+            elif tag:  # If not a string but has a value, convert it
+                tag_str = str(tag).strip().lower()
+                if tag_str:
+                    normalized_tags.append(tag_str)
+
+        task.tags = normalized_tags
         return True, ""
 
     def update_task_due_date(self, task_id: int, new_due_date: date | None) -> tuple[bool, str]:
@@ -285,7 +293,7 @@ class TaskService:
         """
         # Validate due date if provided
         if new_due_date:
-            is_valid, error = self.validator.validate_date(new_due_date.strftime("%Y-%m-%d"))
+            is_valid, error, _ = self.validator.validate_date(new_due_date.strftime("%Y-%m-%d"))
             if not is_valid:
                 return False, error
 
@@ -312,7 +320,7 @@ class TaskService:
             - (False, "error message") if validation fails or task not found
         """
         # Validate recurrence
-        is_valid, error = self.validator.validate_recurrence(new_recurrence.value)
+        is_valid, error, _ = self.validator.validate_recurrence(new_recurrence.value)
         if not is_valid:
             return False, error
 

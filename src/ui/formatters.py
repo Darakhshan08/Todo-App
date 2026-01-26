@@ -1,24 +1,37 @@
 """
 Output formatting utilities for Phase I Todo CLI.
+Enhanced with color support for interactive UI.
 """
 from src.models.task import Task, Priority
+from blessed import Terminal
+
+# Initialize terminal for color detection (module-level)
+_term = Terminal()
+_use_colors = _term.number_of_colors >= 8
 
 
-def format_status_indicator(completed: bool) -> str:
+def format_status_indicator(completed: bool, use_unicode: bool = True) -> str:
     """
-    Format completion status indicator.
+    Format completion status indicator with color and Unicode support.
 
     Args:
         completed: Completion status
+        use_unicode: Use Unicode symbols (✓ □) or ASCII (X space)
 
     Returns:
-        "X" if completed, " " (space) if incomplete
+        Colored status symbol or ASCII fallback
 
     Example:
-        format_status_indicator(True) -> "X"
-        format_status_indicator(False) -> " "
+        format_status_indicator(True) -> "✓" (green)
+        format_status_indicator(False) -> "□" (white)
     """
-    return "X" if completed else " "
+    if use_unicode and _use_colors:
+        if completed:
+            return _term.green("✓")
+        else:
+            return _term.white("□")
+    else:
+        return "X" if completed else " "
 
 
 def format_task_line(task: Task) -> str:
@@ -183,27 +196,38 @@ def format_priority_indicator(priority: Priority) -> str:
     return priority.value
 
 
-def format_priority_label(priority: Priority) -> str:
+def format_priority_label(priority: Priority, use_color: bool = True) -> str:
     """
-    Format priority as a compact label (alias for format_priority_indicator).
+    Format priority as a compact label with color support.
 
     Args:
         priority: Priority level
+        use_color: Apply color coding (HIGH=red, MEDIUM=yellow, LOW=green)
 
     Returns:
-        Formatted string: "(HIGH)", "(MED)", or "(LOW)"
+        Formatted string: "(HIGH)", "(MED)", or "(LOW)" with optional color
 
     Example:
-        format_priority_label(Priority.HIGH) -> "(HIGH)"
-        format_priority_label(Priority.MEDIUM) -> "(MED)"
-        format_priority_label(Priority.LOW) -> "(LOW)"
+        format_priority_label(Priority.HIGH) -> "(HIGH)" in red
+        format_priority_label(Priority.MEDIUM) -> "(MED)" in yellow
+        format_priority_label(Priority.LOW) -> "(LOW)" in green
     """
     priority_map = {
         Priority.HIGH: "(HIGH)",
         Priority.MEDIUM: "(MED)",
         Priority.LOW: "(LOW)"
     }
-    return priority_map.get(priority, "(MED)")
+    label = priority_map.get(priority, "(MED)")
+
+    if use_color and _use_colors:
+        if priority == Priority.HIGH:
+            return _term.red(label)
+        elif priority == Priority.MEDIUM:
+            return _term.yellow(label)
+        else:  # LOW
+            return _term.green(label)
+
+    return label
 
 
 def format_tags(tags: list[str]) -> str:
