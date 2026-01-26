@@ -41,8 +41,8 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T001 Create project directory structure (src/, tests/, specs/, history/)
-- [ ] T002 Create pyproject.toml with UV package manager configuration and pytest dependency
+- [X] T001 Create project directory structure (src/, tests/, specs/, history/)
+- [X] T002 Create pyproject.toml with UV package manager configuration and pytest dependency
 
 **Completion Criteria**: Directory structure matches plan.md; pyproject.toml is valid and installable
 
@@ -54,9 +54,9 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T003 [P] Implement Task data model in src/models/task.py with id, title, description, status, created_at attributes
-- [ ] T004 [P] Implement TaskValidator in src/services/task_validator.py with title/description/id validation functions
-- [ ] T005 Implement TaskService skeleton in src/services/task_service.py with in-memory task storage (empty list)
+- [X] T003 [P] Implement Task data model in src/models/task.py with id, title, description, status, created_at attributes
+- [X] T004 [P] Implement TaskValidator in src/services/task_validator.py with title/description/id validation functions
+- [X] T005 Implement TaskService skeleton in src/services/task_service.py with in-memory task storage (empty list)
 
 **Completion Criteria**: All foundational modules exist; Task model can be instantiated; Validator functions can be called; TaskService has empty storage ready
 
@@ -72,9 +72,9 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T006 [US1] Implement ID generator in src/models/task.py (sequential task-001, task-002, task-003 format)
-- [ ] T007 [US1] Implement add_task() in src/services/task_service.py (validate → create Task → store in list)
-- [ ] T008 [US1] Implement add_task_command() in src/cli/commands.py (prompt title/description → call service → display confirmation)
+- [X] T006 [US1] Implement ID generator in src/models/task.py (sequential task-001, task-002, task-003 format)
+- [X] T007 [US1] Implement add_task() in src/services/task_service.py (validate → create Task → store in list)
+- [X] T008 [US1] Implement add_task_command() in src/cli/commands.py (prompt title/description → call service → display confirmation)
 
 **Completion Criteria**: Users can create tasks with title-only or title+description. Tasks receive unique IDs (task-001, task-002, etc.). Validation rejects empty titles and oversized input per spec.
 
@@ -98,9 +98,9 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T009 [US2] Implement get_all_tasks() in src/services/task_service.py (return list of all tasks in creation order)
-- [ ] T010 [US2] Implement task display formatter in src/cli/ui.py (format: "task-001 ✗ Title" with description below)
-- [ ] T011 [US2] Implement view_list_command() in src/cli/commands.py (retrieve tasks → format → display, handle empty list)
+- [X] T009 [US2] Implement get_all_tasks() in src/services/task_service.py (return list of all tasks in creation order)
+- [X] T010 [US2] Implement task display formatter in src/cli/ui.py (format: "task-001 ✗ Title" with description below)
+- [X] T011 [US2] Implement view_list_command() in src/cli/commands.py (retrieve tasks → format → display, handle empty list)
 
 **Completion Criteria**: All tasks display with ID, status symbol (✓ complete, ✗ incomplete), title, and description. Empty list shows "No tasks found. Your task list is empty."
 
@@ -123,9 +123,9 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T012 [US3] Implement find_task_by_id() in src/services/task_service.py (lookup task by ID string)
-- [ ] T013 [US3] Implement update_task() in src/services/task_service.py (find task → validate new values → update title/description)
-- [ ] T014 [US3] Implement update_task_command() in src/cli/commands.py (prompt for ID → show current values → prompt for new values → call service)
+- [X] T012 [US3] Implement find_task_by_id() in src/services/task_service.py (lookup task by ID string)
+- [X] T013 [US3] Implement update_task() in src/services/task_service.py (find task → validate new values → update title/description)
+- [X] T014 [US3] Implement update_task_command() in src/cli/commands.py (prompt for ID → show current values → prompt for new values → call service)
 
 **Completion Criteria**: Users can update title only, description only, or both. Task ID and status remain unchanged. Pressing Enter without text keeps current value. Non-existent IDs show error.
 
@@ -149,9 +149,9 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T015 [US4] Implement delete_task() in src/services/task_service.py (find task → remove from list, do NOT renumber IDs)
-- [ ] T016 [US4] Implement confirmation prompt in src/cli/ui.py (accept yes/y/no/n, case-insensitive)
-- [ ] T017 [US4] Implement delete_task_command() in src/cli/commands.py (prompt ID → show task → confirm → call service → display result)
+- [X] T015 [US4] Implement delete_task() in src/services/task_service.py (find task → remove from list, do NOT renumber IDs)
+- [X] T016 [US4] Implement confirmation prompt in src/cli/ui.py (accept yes/y/no/n, case-insensitive)
+- [X] T017 [US4] Implement delete_task_command() in src/cli/commands.py (prompt ID → show task → confirm → call service → display result)
 
 **Completion Criteria**: Users can delete tasks by ID after confirmation. Remaining tasks keep original IDs (no renumbering). Cancelled deletions leave task unchanged. Non-existent IDs show error.
 
@@ -175,9 +175,9 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T018 [US5] Implement toggle_status() in src/services/task_service.py (find task → flip status: incomplete↔complete)
-- [ ] T019 [US5] Implement status display logic in src/cli/ui.py (✓ for complete, ✗ for incomplete)
-- [ ] T020 [US5] Implement toggle_status_command() in src/cli/commands.py (prompt ID → call service → display new status)
+- [X] T018 [US5] Implement toggle_status() in src/services/task_service.py (find task → flip status: incomplete↔complete)
+- [X] T019 [US5] Implement status display logic in src/cli/ui.py (✓ for complete, ✗ for incomplete)
+- [X] T020 [US5] Implement toggle_status_command() in src/cli/commands.py (prompt ID → call service → display new status)
 
 **Completion Criteria**: Users can toggle task status between complete/incomplete. Title and description remain unchanged. Status immediately reflected in view list. Non-existent IDs show error.
 
@@ -197,9 +197,9 @@ This task breakdown covers the complete Phase I implementation of the in-memory 
 
 ### Tasks
 
-- [ ] T021 Implement main menu in src/cli/ui.py (display options: 1-Add, 2-View, 3-Update, 4-Delete, 5-Toggle, 6-Exit)
-- [ ] T022 Implement main CLI loop in src/main.py (display menu → route to command handlers → loop until exit)
-- [ ] T023 Create README.md with setup instructions (UV install, run command, feature descriptions)
+- [X] T021 Implement main menu in src/cli/ui.py (display options: 1-Add, 2-View, 3-Update, 4-Delete, 5-Toggle, 6-Exit)
+- [X] T022 Implement main CLI loop in src/main.py (display menu → route to command handlers → loop until exit)
+- [X] T023 Create README.md with setup instructions (UV install, run command, feature descriptions)
 
 **Completion Criteria**: Full CLI application runs from `python src/main.py`. All 5 features accessible via menu. Exit option terminates cleanly. README has clear setup and usage instructions.
 
