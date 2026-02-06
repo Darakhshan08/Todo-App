@@ -1,8 +1,8 @@
-# Hackathon II – Evolution of Todo (Phase I) Constitution
+# Hackathon II – Evolution of Todo (Phase II) Constitution
 
 ## Overview
 
-This constitution governs Phase I of the Evolution of Todo project: an in-memory Python console Todo application built using Spec-Driven Development. This document is the authoritative source for all development principles, scope boundaries, and quality standards.
+This constitution governs Phase II of the Evolution of Todo project: a modern multi-user full-stack web application implementing Todo functionality with Next.js frontend, FastAPI backend, and Neon Serverless PostgreSQL database with Better Auth authentication. This document is the authoritative source for all development principles, scope boundaries, and quality standards for the Full-Stack Web Application phase.
 
 ## Core Principles
 
@@ -12,29 +12,29 @@ Every feature MUST follow the Agentic Dev Stack workflow using Spec-Kit Plus: Sp
 
 **Rationale**: Spec-driven development with Spec-Kit Plus ensures clarity, reduces rework, maintains alignment between requirements and implementation, and provides full traceability from specification to code.
 
-### II. Deterministic Behavior Only
+### II. Full-Stack Web Application Architecture
 
-All application logic MUST be deterministic with zero randomness, no AI features, no LLM integration, and no external dependencies beyond Python standard library. All behavior must be testable and reproducible.
+The application MUST be a modern web-based system with separate Next.js frontend and FastAPI backend services. User interaction flows through the web interface only. The system MUST include proper authentication, persistent data storage, and API communication between frontend and backend.
 
-**Rationale**: Phase I focuses on building a reliable, predictable foundation. AI and non-deterministic features are reserved for Phase II and beyond.
+**Rationale**: A clean full-stack architecture enables proper separation of concerns, scalability, and preparation for advanced features in future phases.
 
-### III. CLI-First Interface (Console Only)
+### III. JWT-Based Authentication & User Isolation (Mandatory)
 
-The application MUST be a Python console-based CLI with text-in/text-out protocol. User interaction flows through the terminal only. All output must be clear, readable, and deterministic.
+The application MUST implement user authentication using Better Auth with JWT tokens. Every API request MUST include valid JWT tokens in headers. Backend services MUST verify JWT tokens and filter all data operations by the authenticated user's ID. Each user MUST only see and modify their own data.
 
-**Rationale**: A clean CLI foundation enables future extensibility (web UI, APIs) while keeping Phase I focused and simple.
+**Rationale**: Security and user data privacy are critical requirements for any multi-user web application. JWT tokens provide stateless, scalable authentication.
 
-### IV. In-Memory Data Storage Only
+### IV. Persistent Data Storage (Mandatory)
 
-All task data MUST reside in memory only (no files, databases, ORMs, persistence). Data exists for the lifetime of the process and is lost on exit. No file I/O, SQL, or NoSQL operations are allowed.
+All task data MUST be stored persistently in Neon Serverless PostgreSQL database using SQLModel ORM. Data MUST survive application restarts and server outages. No in-memory storage is allowed.
 
-**Rationale**: In-memory design keeps Phase I simple, fast, and focused on core logic without infrastructure overhead.
+**Rationale**: Persistence is a fundamental requirement for any production-ready web application. Users need their data to be reliably stored.
 
-### V. Clean Architecture & Reusability
+### V. Clean Architecture & Full-Stack Separation
 
-Code MUST follow clean Python structure with clear separation of concerns. Logic must be reusable, testable, and free of speculative features. Each module should have a single, well-defined responsibility.
+Code MUST follow clean architecture with clear separation between frontend, backend, and database layers. Frontend logic must be isolated from backend logic, with proper API contracts defining their interaction. Each service should have a single, well-defined responsibility.
 
-**Rationale**: Clean architecture enables Phase II integration with persistence layers, APIs, and extended functionality without refactoring core logic.
+**Rationale**: Clean architecture ensures maintainability, testability, and scalability for future enhancements.
 
 ### VI. No Manual Code Generation by Users
 
@@ -42,42 +42,104 @@ Claude Code is the ONLY entity authorized to generate, write, or modify applicat
 
 **Rationale**: This enforces spec-driven development and prevents drift between specifications and code.
 
-## Technology Stack (Phase I)
+## Technology Stack (Phase II)
 
-- **Package Manager**: UV
+- **Frontend**: Next.js 16+ with App Router
+- **Backend**: Python FastAPI
+- **Database**: Neon Serverless PostgreSQL
+- **ORM**: SQLModel
+- **Authentication**: Better Auth with JWT tokens
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Package Manager**: UV (dependencies installed inside a project-scoped .venv)
 - **Python Version**: 3.13+
 - **Development Tools**: Claude Code + Spec-Kit Plus
 - **Workflow**: Spec → Plan → Tasks → Implement (Agentic Dev Stack)
 
-## Scope Boundaries (Phase I)
+## Feature Levels Implementation
+
+### Basic Level Functionality (Required)
+
+- Add Task – Create new todo items
+- Delete Task – Remove tasks from the list
+- Update Task – Modify existing task details
+- View Task List – Display all tasks
+- Mark as Complete – Toggle task completion status
+
+### Intermediate Level Functionality (Target)
+
+- Priorities & Tags/Categories – Assign levels (high/medium/low) or labels (work/home)
+- Search & Filter – Search by keyword; filter by status, priority, or date
+- Sort Tasks – Reorder by due date, priority, or alphabetically
+
+### Advanced Level Functionality (Aspirational)
+
+- Recurring Tasks – Auto-reschedule repeating tasks (e.g., "weekly meeting")
+- Due Dates & Time Reminders – Set deadlines with date/time pickers; browser notifications
+
+## API Contract
+
+The backend MUST implement these endpoints with JWT authentication:
+
+- GET /api/{user_id}/tasks - List all tasks for a user
+- POST /api/{user_id}/tasks - Create a new task
+- GET /api/{user_id}/tasks/{id} - Get specific task details
+- PUT /api/{user_id}/tasks/{id} - Update a task
+- DELETE /api/{user_id}/tasks/{id} - Delete a task
+- PATCH /api/{user_id}/tasks/{id}/complete - Toggle task completion
+
+**Requirement**: All endpoints require valid JWT token in Authorization header and enforce user isolation by filtering data by user_id in the URL.
+
+## Authentication Flow
+
+1. Better Auth on frontend handles user signup/signin
+2. JWT tokens issued by Better Auth
+3. Frontend includes JWT in Authorization header for all API calls
+4. Backend verifies JWT and extracts user ID
+5. Backend enforces user isolation by filtering data by user ID
+
+**Shared Secret**: Both frontend (Better Auth) and backend (FastAPI) must use the same secret key via BETTER_AUTH_SECRET environment variable.
+
+## Data Model
+
+- **users table**: Managed by Better Auth (id, email, name, created_at)
+- **tasks table**: (id, user_id FK->users.id, title, description, completed, created_at, updated_at)
+- Proper indexing on user_id for filtering performance
+
+## Monorepo Structure with Spec-Kit
+
+- `/Phase-2/frontend` - Next.js application
+- `/Phase-2/backend` - FastAPI application
+- `/Phase-2/specs` - Specification files organized by type
+  - `/Phase-2/specs/features` - Feature specifications
+  - `/Phase-2/specs/api` - API specifications
+  - `/Phase-2/specs/database` - Database specifications
+  - `/Phase-2/specs/ui` - UI specifications
+- `/Phase-2/docker-compose.yml` - Local development environment
+
+## Scope Boundaries (Phase II)
 
 ### In Scope
 
-- In-memory data storage only
-- Python console-based CLI interaction
-- Core Todo functionality (Basic Level):
-  - Add task (with title and description)
-  - View task list (with status visibility)
-  - Update task (modify description)
-  - Delete task by ID
-  - Mark task as complete/incomplete
-- Task identification via unique IDs
-- Clear status display (complete ✓ or incomplete ✗)
+- Full-stack web application with Next.js frontend and FastAPI backend
+- Multi-user authentication and authorization with Better Auth
+- Persistent data storage in Neon Serverless PostgreSQL
+- Core Todo functionality (Basic Level features)
+- Responsive web UI with Tailwind CSS and shadcn/ui
+- JWT-based authentication with user isolation
+- RESTful API endpoints with proper error handling
+- Intermediate Level features (as targets)
+- Advanced Level features (as aspirational)
 
 ### Explicitly Out of Scope (Forbidden)
 
-- Databases (SQL, NoSQL, file persistence)
-- Web frameworks or REST APIs
-- UI frameworks (web, desktop, mobile)
-- AI, LLMs, agents, chatbots, or intelligent features
-- Cloud infrastructure, Docker, Kubernetes
-- Phase II–V features (persistence, sync, real-time, collaboration, mobile)
-- Authentication/authorization
-- Advanced filtering or search
-- Undo/redo functionality
-- Task prioritization or urgency markers
-- Due dates or scheduling
-- Categories or tags
+- CLI or console interfaces
+- In-memory data storage
+- Static site generation only (requires full interactivity)
+- AI, LLMs, agents, chatbots, or intelligent features (reserved for Phase III+)
+- Cloud infrastructure, Docker, Kubernetes (reserved for Phase IV+)
+- Phase III–V features (chatbots, event-driven architecture, Dapr, Kafka)
+- Advanced mobile-specific features (beyond responsive web)
 
 ## Specification Rules
 
@@ -88,17 +150,29 @@ Every feature MUST satisfy these requirements before code generation begins:
 3. **User Stories**: Specification prioritizes user journeys (P1, P2, P3) and ensures each story is independently testable.
 4. **Clarity**: No ambiguous language; all requirements are specific and measurable.
 5. **Edge Cases**: Specification explicitly handles error scenarios, boundary conditions, and invalid inputs.
+6. **API Contracts**: API specifications define proper request/response schemas, error formats, and authentication requirements.
+7. **Security Considerations**: Specifications include authentication, authorization, and data isolation requirements.
 
 Specifications are refined iteratively until approved. No implementation may proceed without explicit approval.
 
 ## Implementation Rules
 
 1. **Code Generation Only**: All code is generated by Claude Code from approved specifications. Manual code edits are forbidden.
-2. **Determinism**: No randomness, no conditional logic based on external state, no AI-driven decisions.
+2. **Full-Stack Integration**: Frontend and backend must work seamlessly together with proper API contracts.
 3. **Testing**: All code is testable. Acceptance criteria must pass before code is considered complete.
 4. **Simplicity**: No unused features, no speculative logic, no over-engineering. YAGNI principle enforced.
-5. **Error Handling**: CLI errors are handled gracefully with clear, actionable error messages to stdout/stderr.
-6. **Code Quality**: Python code must be readable, well-structured, and free of unnecessary complexity.
+5. **Error Handling**: Web application errors are handled gracefully with clear, actionable error messages.
+6. **Code Quality**: Both TypeScript (frontend) and Python (backend) code must be readable, well-structured, and free of unnecessary complexity.
+7. **Security First**: JWT authentication, user isolation, and proper validation must be implemented from the start.
+8. **Type Safety**: TypeScript for frontend, Pydantic models for backend API requests/responses.
+
+## Deployment Requirements
+
+1. Frontend ready for Vercel deployment
+2. Backend ready for cloud deployment (AWS/GCP/DigitalOcean)
+3. Environment-based configuration
+4. Proper CORS configuration between frontend and backend
+5. Health check endpoints
 
 ## Folder & Artifact Requirements
 
@@ -106,7 +180,10 @@ The repository MUST contain and maintain:
 
 - **`.specify/memory/constitution.md`** — This document (authoritative governance)
 - **`specs/`** — Complete history of all feature specifications
-- **`src/`** — Python source code (only Claude Code generates this)
+- **`Phase-2/`** — Phase II full-stack application structure
+  - **`Phase-2/frontend/`** — Next.js source code
+  - **`Phase-2/backend/`** — FastAPI source code
+  - **`Phase-2/specs/`** — Phase II specifications
 - **`README.md`** — Setup and usage instructions
 - **`CLAUDE.md`** — Claude Code operational instructions and guidelines
 - **`history/prompts/`** — Prompt History Records (PHRs) for all user interactions
@@ -115,25 +192,53 @@ The repository MUST contain and maintain:
 
 All code and artifacts MUST meet these standards:
 
-1. **Spec Compliance**: Code strictly matches approved specifications; no deviations.
-2. **No Dead Code**: Every function, class, and variable serves a clear purpose. Unused code is deleted.
-3. **Clear CLI Prompts**: User prompts are unambiguous and guide users toward correct input.
-4. **Task Identification**: Every task has a unique, human-readable ID (e.g., task-001, task-002).
-5. **Status Visibility**: Task status is clearly displayed (complete ✓ or incomplete ✗) in all outputs.
-6. **Error Messages**: Error messages are informative and suggest corrective actions where possible.
-7. **Testing Completeness**: All acceptance criteria from specs are verified to pass.
+1. **Testing**: Unit and integration tests for backend API endpoints
+2. **Type Safety**: TypeScript for frontend, Pydantic models for backend
+3. **Responsive Design**: Mobile-first responsive UI
+4. **Performance**: Optimized database queries and API responses
+5. **Security**: Input validation, SQL injection prevention, secure token handling
+6. **Spec Compliance**: Code strictly matches approved specifications; no deviations.
+7. **No Dead Code**: Every function, class, and variable serves a clear purpose. Unused code is deleted.
+8. **Secure Authentication**: All API endpoints require JWT tokens and enforce user isolation.
+9. **Data Integrity**: Proper database relationships, foreign keys, and constraints are implemented.
+10. **Responsive UI**: Frontend works properly on mobile, tablet, and desktop devices.
+11. **Error Messages**: Error messages are informative and suggest corrective actions where possible.
+12. **Testing Completeness**: All acceptance criteria from specs are verified to pass.
+13. **Type Safety**: TypeScript and Pydantic models properly validate data at runtime.
 
-## Success Criteria (Phase I Completion)
+## Non-Negotiable Constraints
 
-Phase I is complete when:
+1. No hardcoded credentials or secrets
+2. No bypassing authentication on any endpoint
+3. No sharing of data between users
+4. No manual implementation without proper specs
+5. No skipping of security measures for convenience
+6. All features must map back to specifications
+7. Code must follow established patterns from existing skills
+8. All changes must be tracked through the SDD process
 
-1. ✅ All 5 core Todo features work correctly and pass acceptance tests
-2. ✅ No manual code editing was performed; all code came from Claude Code
-3. ✅ Complete specs exist for all features and align with implementation
-4. ✅ CLI application runs successfully from terminal without manual setup issues
-5. ✅ Architecture is clean, modular, and Phase II-ready (supports future persistence and API layers)
-6. ✅ No code deviates from approved specifications
-7. ✅ All PHRs are recorded for full transparency and traceability
+## Success Criteria (Phase II Completion)
+
+Phase II is complete when:
+
+1. ✅ All 5 Basic Level Todo features work correctly in web interface and pass acceptance tests
+2. ✅ Authentication and user isolation work properly with JWT tokens
+3. ✅ Data is persisted in Neon PostgreSQL database
+4. ✅ Next.js frontend and FastAPI backend communicate properly via API
+5. ✅ No manual code editing was performed; all code came from Claude Code
+6. ✅ Complete specs exist for all features and align with implementation
+7. ✅ Application runs successfully and can be deployed to Vercel (frontend) and cloud backend
+8. ✅ Architecture is clean, modular, and Phase III-ready (supports future AI integration)
+9. ✅ All PHRs are recorded for full transparency and traceability
+
+## Phase 2 Specific Requirements
+
+1. Complete Basic Level functionality as a web application
+2. Create RESTful API endpoints for all operations
+3. Build responsive frontend interface
+4. Store data in Neon Serverless PostgreSQL database
+5. Authentication – Implement user signup/signin using Better Auth
+6. Follow the Monorepo Organization For Full-Stack Projects With GitHub Spec-Kit + Claude Code structure
 
 ## Governance
 
@@ -152,6 +257,7 @@ All PRs and code reviews MUST verify:
 - Specifications exist and are approved before code changes
 - Code strictly matches specification requirements
 - No manual code edits outside Claude Code's generation
+- Authentication and user isolation requirements are met
 - Acceptance criteria pass
 - Quality standards are met
 
@@ -161,12 +267,14 @@ This constitution supersedes all other practices and guidance documents. In case
 
 ---
 
-**Version**: 1.1.0 | **Ratified**: 2026-01-18 | **Last Amended**: 2026-01-18
+**Version**: 2.0.0 | **Ratified**: 2026-02-05 | **Last Amended**: 2026-02-05
 
 ## Amendment Log
 
-### Version 1.1.0 (2026-01-18)
-- Added explicit Technology Stack section (UV, Python 3.13+, Spec-Kit Plus)
-- Enhanced Principle I to reference Agentic Dev Stack workflow and Spec-Kit Plus
-- Strengthened "no manual coding" language to match official Phase I requirements
-- Clarified Basic Level feature scope alignment with hackathon deliverables
+### Version 2.0.0 (2026-02-05)
+- Complete rewrite for Phase II Full-Stack Web Application
+- Removed all Phase I CLI and in-memory specific content
+- Added Next.js, FastAPI, Neon PostgreSQL, Better Auth requirements
+- Included API contracts, JWT authentication, and user isolation requirements
+- Added monorepo structure with Phase-2 directory organization
+- Defined feature levels (Basic, Intermediate, Advanced) for Todo functionality

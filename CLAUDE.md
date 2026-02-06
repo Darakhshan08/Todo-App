@@ -113,7 +113,7 @@ You are not expected to solve every problem autonomously. You MUST invoke the us
 1.  **Ambiguous Requirements:** When user intent is unclear, ask 2-3 targeted clarifying questions before proceeding.
 2.  **Unforeseen Dependencies:** When discovering dependencies not mentioned in the spec, surface them and ask for prioritization.
 3.  **Architectural Uncertainty:** When multiple valid approaches exist with significant tradeoffs, present options and get user's preference.
-4.  **Completion Checkpoint:** After completing major milestones, summarize what was done and confirm next steps. 
+4.  **Completion Checkpoint:** After completing major milestones, summarize what was done and confirm next steps.
 
 ## Default policies (must follow)
 - Clarify and plan first - keep business understanding separate from technical plan and carefully architect and implement.
@@ -208,3 +208,56 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## PHASE 2 CONFIGURATION
+
+### Default Skills (Automatically Invoked)
+The following skills will be automatically available and invoked when needed during Phase 2 development:
+
+- backend-api-routes
+- backend-database
+- backend-error-handling
+- backend-jwt-auth
+- backend-query-params
+- backend-service-layer
+- backend-testing
+- better-auth-python
+- better-auth-ts
+- constitution-guard
+- fastapi-framework
+- framer-motion
+- frontend-api-client
+- frontend-auth
+- neon-postgres
+- nextjs-setup
+- react-components
+- shadcn
+- spec-writer
+- sqlmodel-schema
+- tailwind-css
+- task-decomposer
+
+### Optional Agents for Phase 2
+The following agents are available for Phase 2 development when needed:
+
+- product-architect-agent
+- spec-authoring-agent
+- spec-refinement-agent
+- implementation-planner
+- quality-review-agent
+
+### Phase 2 Project Structure
+Phase 2 will be developed in the `Phase-2/` directory with the following structure:
+- `Phase-2/frontend/` - Next.js frontend application
+- `Phase-2/backend/` - FastAPI backend application
+- `Phase-2/specs/` - Specifications for Phase 2 features
+- `Phase-2/docker-compose.yml` - Local development environment
+
+### Development Workflow for Phase 2
+1. Create Phase-2 directory structure
+2. Implement full-stack web application using Next.js (frontend) and FastAPI (backend)
+3. Use Neon Serverless PostgreSQL for database
+4. Implement authentication using Better Auth
+5. Create RESTful API endpoints for todo operations
+6. Build responsive frontend interface
+7. Ensure proper JWT token handling between frontend and backend
