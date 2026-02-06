@@ -254,6 +254,7 @@ Phase 2 will be developed in the `Phase-2/` directory with the following structu
 - `Phase-2/docker-compose.yml` - Local development environment
 
 ### Development Workflow for Phase 2
+Phase 2 follows the Spec-Driven Development (SDD) methodology with the Agentic Dev Stack workflow: Spec → Plan → Tasks → Implement
 1. Create Phase-2 directory structure
 2. Implement full-stack web application using Next.js (frontend) and FastAPI (backend)
 3. Use Neon Serverless PostgreSQL for database
