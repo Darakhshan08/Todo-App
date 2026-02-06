@@ -56,3 +56,5 @@ htmlcov/
 # Distribution / packaging
 pip-log.txt
 pip-delete-this-directory.txt
+.claude/settings.local.json
+nul
