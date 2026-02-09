@@ -21,11 +21,19 @@ wheels/
 *.egg
 MANIFEST
 
-# Virtual Environment
+# Virtual Environment (Python)
 venv/
+venv*/
 ENV/
 env/
-.venv
+env*/
+.venv/
+.venv*/
+*.venv
+virtualenv/
+.virtualenv/
+.Python
+pyvenv.cfg
 
 # Testing
 .pytest_cache/
