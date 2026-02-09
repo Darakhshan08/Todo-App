@@ -38,11 +38,11 @@ description: "Task list for Full-Stack Web Application implementation"
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create Phase-2 directory structure per implementation plan
-- [ ] T002 [P] Initialize backend directory with FastAPI dependencies in Phase-2/backend/requirements.txt
-- [ ] T003 [P] Initialize frontend directory with Next.js dependencies in Phase-2/frontend/package.json
-- [ ] T004 [P] Configure linting and formatting tools for both backend and frontend
-- [ ] T005 Create docker-compose.yml for local development environment per plan.md
+- [X] T001 Create Phase-2 directory structure per implementation plan
+- [X] T002 [P] Initialize backend directory with FastAPI dependencies in Phase-2/backend/requirements.txt
+- [X] T003 [P] Initialize frontend directory with Next.js dependencies in Phase-2/frontend/package.json
+- [X] T004 [P] Configure linting and formatting tools for both backend and frontend
+- [X] T005 Create docker-compose.yml for local development environment per plan.md
 
 ---
 
@@ -52,19 +52,19 @@ description: "Task list for Full-Stack Web Application implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 Setup Neon PostgreSQL database connection and migration framework in Phase-2/backend/src/db/
-- [ ] T007 [P] Implement Better Auth configuration for frontend in Phase-2/frontend/src/app/(auth)/
-- [ ] T008 [P] Implement JWT authentication middleware for FastAPI with Better Auth compatibility in Phase-2/backend/src/middleware/auth_middleware.py - verify token, extract user_id, enforce user isolation per constitution L23-25
-- [ ] T009 Create base models including User and Task models per plan.md in Phase-2/backend/src/models/
-- [ ] T010 Configure environment configuration management in both frontend and backend
-- [ ] T011 Setup API routing and middleware structure in Phase-2/backend/src/api/
-- [ ] T012 Create API client for frontend-backend communication in Phase-2/frontend/src/lib/api.ts
-- [ ] T013 Configure CORS and security headers between frontend and backend
-- [ ] T014 Setup basic error handling infrastructure in both frontend and backend
-- [ ] T015 [P] Implement spec-driven development verification in Phase-2/backend/src/utils/spec_verification.py
-- [ ] T016 [P] Create constitution compliance checker in Phase-2/backend/src/utils/constitution_checker.py
-- [ ] T017 [P] Implement rate limiting middleware for abuse prevention per plan.md L108 in Phase-2/backend/src/middleware/rate_limiter.py
-- [ ] T018 [P] Implement input validation middleware per spec.md L201 in Phase-2/backend/src/middleware/validation.py
+- [X] T006 Setup Neon PostgreSQL database connection and migration framework in Phase-2/backend/src/db/
+- [X] T007 [P] Implement Better Auth configuration for frontend in Phase-2/frontend/src/app/(auth)/
+- [X] T008 [P] Implement JWT authentication middleware for FastAPI with Better Auth compatibility in Phase-2/backend/src/middleware/auth_middleware.py - verify token, extract user_id, enforce user isolation per constitution L23-25
+- [X] T009 Create base models including User and Task models per plan.md in Phase-2/backend/src/models/
+- [X] T010 Configure environment configuration management in both frontend and backend
+- [X] T011 Setup API routing and middleware structure in Phase-2/backend/src/api/
+- [X] T012 Create API client for frontend-backend communication in Phase-2/frontend/src/lib/api.ts
+- [X] T013 Configure CORS and security headers between frontend and backend
+- [X] T014 Setup basic error handling infrastructure in both frontend and backend
+- [X] T015 [P] Implement spec-driven development verification in Phase-2/backend/src/utils/spec_verification.py
+- [X] T016 [P] Create constitution compliance checker in Phase-2/backend/src/utils/constitution_checker.py
+- [X] T017 [P] Implement rate limiting middleware for abuse prevention per plan.md L108 in Phase-2/backend/src/middleware/rate_limiter.py
+- [X] T018 [P] Implement input validation middleware per spec.md L201 in Phase-2/backend/src/middleware/validation.py
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -78,17 +78,17 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 1
 
-- [ ] T019 [P] [US1] Implement signup page with form validation in Phase-2/frontend/src/app/signup/page.tsx
-- [ ] T020 [P] [US1] Implement login page with form validation in Phase-2/frontend/src/app/login/page.tsx
-- [ ] T021 [P] [US1] Create task model with validation in Phase-2/backend/src/models/task.py
-- [ ] T022 [US1] Implement authentication routes per plan.md in Phase-2/backend/src/api/auth_routes.py
-- [ ] T023 [US1] Implement task creation endpoint POST /api/{user_id}/tasks with validation per plan.md L92-93 in Phase-2/backend/src/api/task_routes.py
-- [ ] T024 [US1] Implement task service for creation in Phase-2/backend/src/services/task_service.py
-- [ ] T025 [US1] Create task creation form component in Phase-2/frontend/src/components/TaskForm.tsx
-- [ ] T026 [US1] Create dashboard page to display tasks and form in Phase-2/frontend/src/app/dashboard/page.tsx
-- [ ] T027 [US1] Implement JWT token handling and user context in Phase-2/frontend/src/contexts/UserContext.tsx
-- [ ] T028 [US1] Connect frontend task creation form to backend API endpoint
-- [ ] T028a [US1] Add performance monitoring to task creation endpoint with timing metrics in Phase-2/backend/src/api/task_routes.py
+- [X] T019 [P] [US1] Implement signup page with form validation in Phase-2/frontend/src/app/signup/page.tsx
+- [X] T020 [P] [US1] Implement login page with form validation in Phase-2/frontend/src/app/login/page.tsx
+- [X] T021 [P] [US1] Create task model with validation in Phase-2/backend/src/models/task.py
+- [X] T022 [US1] Implement authentication routes per plan.md in Phase-2/backend/src/api/auth_routes.py
+- [X] T023 [US1] Implement task creation endpoint POST /api/{user_id}/tasks with validation per plan.md L92-93 in Phase-2/backend/src/api/task_routes.py
+- [X] T024 [US1] Implement task service for creation in Phase-2/backend/src/services/task_service.py
+- [X] T025 [US1] Create task creation form component in Phase-2/frontend/src/components/TaskForm.tsx
+- [X] T026 [US1] Create dashboard page to display tasks and form in Phase-2/frontend/src/app/dashboard/page.tsx
+- [X] T027 [US1] Implement JWT token handling and user context in Phase-2/frontend/src/contexts/UserContext.tsx
+- [X] T028 [US1] Connect frontend task creation form to backend API endpoint
+- [X] T028a [US1] Add performance monitoring to task creation endpoint with timing metrics in Phase-2/backend/src/api/task_routes.py
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -102,12 +102,12 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 2
 
-- [ ] T029 [P] [US2] Implement task listing endpoint GET /api/{user_id}/tasks with query params (status, sort) per plan.md L89-90 in Phase-2/backend/src/api/task_routes.py
-- [ ] T030 [P] [US2] Enhance task service with list functionality in Phase-2/backend/src/services/task_service.py
-- [ ] T031 [US2] Create task list component with status indicators in Phase-2/frontend/src/components/TaskList.tsx
-- [ ] T032 [US2] Connect frontend task list to backend API endpoint
-- [ ] T033 [US2] Add task filtering by status (pending/completed) to endpoint and UI
-- [ ] T034 [US2] Implement proper loading states and error handling in task list component
+- [X] T029 [P] [US2] Implement task listing endpoint GET /api/{user_id}/tasks with query params (status, sort) per plan.md L89-90 in Phase-2/backend/src/api/task_routes.py
+- [X] T030 [P] [US2] Enhance task service with list functionality in Phase-2/backend/src/services/task_service.py
+- [X] T031 [US2] Create task list component with status indicators in Phase-2/frontend/src/components/TaskList.tsx
+- [X] T032 [US2] Connect frontend task list to backend API endpoint
+- [X] T033 [US2] Add task filtering by status (pending/completed) to endpoint and UI
+- [X] T034 [US2] Implement proper loading states and error handling in task list component
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -121,12 +121,12 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 3
 
-- [ ] T035 [P] [US3] Implement task update endpoint PUT /api/{user_id}/tasks/{id} in Phase-2/backend/src/api/task_routes.py
-- [ ] T036 [P] [US3] Enhance task service with update functionality in Phase-2/backend/src/services/task_service.py
-- [ ] T037 [US3] Create task update form component in Phase-2/frontend/src/components/TaskUpdateForm.tsx
-- [ ] T038 [US3] Integrate update form with task list component
-- [ ] T039 [US3] Connect frontend task update to backend API endpoint
-- [ ] T040 [US3] Add proper validation and error handling to update functionality
+- [X] T035 [P] [US3] Implement task update endpoint PUT /api/{user_id}/tasks/{id} in Phase-2/backend/src/api/task_routes.py
+- [X] T036 [P] [US3] Enhance task service with update functionality in Phase-2/backend/src/services/task_service.py
+- [X] T037 [US3] Create task update form component in Phase-2/frontend/src/components/TaskUpdateForm.tsx
+- [X] T038 [US3] Integrate update form with task list component
+- [X] T039 [US3] Connect frontend task update to backend API endpoint
+- [X] T040 [US3] Add proper validation and error handling to update functionality
 
 **Checkpoint**: All user stories 1, 2, and 3 should now be independently functional
 
@@ -140,11 +140,11 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 4
 
-- [ ] T041 [P] [US4] Implement task deletion endpoint DELETE /api/{user_id}/tasks/{id} in Phase-2/backend/src/api/task_routes.py
-- [ ] T042 [P] [US4] Enhance task service with delete functionality in Phase-2/backend/src/services/task_service.py
-- [ ] T043 [US4] Add delete button and confirmation to task list component
-- [ ] T044 [US4] Connect frontend task deletion to backend API endpoint
-- [ ] T045 [US4] Add proper confirmation dialog and error handling
+- [X] T041 [P] [US4] Implement task deletion endpoint DELETE /api/{user_id}/tasks/{id} in Phase-2/backend/src/api/task_routes.py
+- [X] T042 [P] [US4] Enhance task service with delete functionality in Phase-2/backend/src/services/task_service.py
+- [X] T043 [US4] Add delete button and confirmation to task list component
+- [X] T044 [US4] Connect frontend task deletion to backend API endpoint
+- [X] T045 [US4] Add proper confirmation dialog and error handling
 
 **Checkpoint**: All user stories 1-4 should now be independently functional
 
@@ -158,11 +158,11 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 5
 
-- [ ] T046 [P] [US5] Implement task completion endpoint PATCH /api/{user_id}/tasks/{id}/complete in Phase-2/backend/src/api/task_routes.py
-- [ ] T047 [P] [US5] Enhance task service with toggle completion functionality in Phase-2/backend/src/services/task_service.py
-- [ ] T048 [US5] Add complete/incomplete toggle button to task list component
-- [ ] T049 [US5] Connect frontend task completion to backend API endpoint
-- [ ] T050 [US5] Update UI to reflect completion status changes
+- [X] T046 [P] [US5] Implement task completion endpoint PATCH /api/{user_id}/tasks/{id}/complete in Phase-2/backend/src/api/task_routes.py
+- [X] T047 [P] [US5] Enhance task service with toggle completion functionality in Phase-2/backend/src/services/task_service.py
+- [X] T048 [US5] Add complete/incomplete toggle button to task list component
+- [X] T049 [US5] Connect frontend task completion to backend API endpoint
+- [X] T050 [US5] Update UI to reflect completion status changes
 
 **Checkpoint**: All user stories 1-5 (core functionality) should now be independently functional
 
@@ -176,12 +176,12 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 6
 
-- [ ] T051 [P] [US6] Update task model to include priority and tags fields in Phase-2/backend/src/models/task.py
-- [ ] T052 [P] [US6] Update task creation endpoint to accept priority and tags in Phase-2/backend/src/api/task_routes.py
-- [ ] T053 [US6] Update task service to handle priority and tags in Phase-2/backend/src/services/task_service.py
-- [ ] T054 [US6] Enhance task form to include priority dropdown and tag input
-- [ ] T055 [US6] Update task list component to display priority indicators and tags
-- [ ] T056 [US6] Add filtering by priority and tags to the list endpoint and UI
+- [X] T051 [P] [US6] Update task model to include priority and tags fields in Phase-2/backend/src/models/task.py
+- [X] T052 [P] [US6] Update task creation endpoint to accept priority and tags in Phase-2/backend/src/api/task_routes.py
+- [X] T053 [US6] Update task service to handle priority and tags in Phase-2/backend/src/services/task_service.py
+- [X] T054 [US6] Enhance task form to include priority dropdown and tag input
+- [X] T055 [US6] Update task list component to display priority indicators and tags
+- [X] T056 [US6] Add filtering by priority and tags to the list endpoint and UI
 
 **Checkpoint**: All user stories 1-6 should now be functional
 
@@ -195,11 +195,11 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 7
 
-- [ ] T057 [P] [US7] Update task listing endpoint with search and filtering parameters in Phase-2/backend/src/api/task_routes.py
-- [ ] T058 [P] [US7] Enhance task service with search and filtering functionality in Phase-2/backend/src/services/task_service.py
-- [ ] T059 [US7] Create search and filter controls component
-- [ ] T060 [US7] Integrate search and filter functionality into task list component
-- [ ] T061 [US7] Add search functionality to UI with proper loading states
+- [X] T057 [P] [US7] Update task listing endpoint with search and filtering parameters in Phase-2/backend/src/api/task_routes.py
+- [X] T058 [P] [US7] Enhance task service with search and filtering functionality in Phase-2/backend/src/services/task_service.py
+- [X] T059 [US7] Create search and filter controls component
+- [X] T060 [US7] Integrate search and filter functionality into task list component
+- [X] T061 [US7] Add search functionality to UI with proper loading states
 
 **Checkpoint**: All user stories 1-7 should now be functional
 
@@ -213,11 +213,11 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 8
 
-- [ ] T062 [P] [US8] Update task listing endpoint with sorting parameters in Phase-2/backend/src/api/task_routes.py
-- [ ] T063 [P] [US8] Enhance task service with sorting functionality in Phase-2/backend/src/services/task_service.py
-- [ ] T064 [US8] Add sort controls to the search and filter component
-- [ ] T065 [US8] Implement sorting functionality in the task list component
-- [ ] T066 [US8] Create sort direction indicators in UI
+- [X] T062 [P] [US8] Update task listing endpoint with sorting parameters in Phase-2/backend/src/api/task_routes.py
+- [X] T063 [P] [US8] Enhance task service with sorting functionality in Phase-2/backend/src/services/task_service.py
+- [X] T064 [US8] Add sort controls to the search and filter component
+- [X] T065 [US8] Implement sorting functionality in the task list component
+- [X] T066 [US8] Create sort direction indicators in UI
 
 **Checkpoint**: All user stories 1-8 should now be functional
 
@@ -231,12 +231,12 @@ description: "Task list for Full-Stack Web Application implementation"
 
 ### Implementation for User Story 9
 
-- [ ] T067 [P] [US9] Set up Tailwind CSS configuration in Phase-2/frontend/
-- [ ] T068 [P] [US9] Install and configure shadcn/ui components in Phase-2/frontend/
-- [ ] T069 [US9] Create responsive layout components for dashboard
-- [ ] T070 [US9] Apply responsive design to all existing components
-- [ ] T071 [US9] Add mobile-first styling with proper breakpoints
-- [ ] T072 [US9] Implement proper loading states and error displays with shadcn/ui
+- [X] T067 [P] [US9] Set up Tailwind CSS configuration in Phase-2/frontend/
+- [X] T068 [P] [US9] Install and configure shadcn/ui components in Phase-2/frontend/
+- [X] T069 [US9] Create responsive layout components for dashboard
+- [X] T070 [US9] Apply responsive design to all existing components
+- [X] T071 [US9] Add mobile-first styling with proper breakpoints
+- [X] T072 [US9] Implement proper loading states and error displays with shadcn/ui
 
 **Checkpoint**: The application now has a professional, responsive UI
 
@@ -246,17 +246,17 @@ description: "Task list for Full-Stack Web Application implementation"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T073 [P] Update documentation in Phase-2/docs/
-- [ ] T074 Code cleanup and refactoring across all components
-- [ ] T075 Performance optimization of database queries and API responses
-- [ ] T076 Security hardening including input validation and rate limiting
-- [ ] T077 Add comprehensive error handling throughout the application
-- [ ] T078 Run quickstart.md validation per plan.md
-- [ ] T079 Add tests for critical user flows (if testing requested)
-- [ ] T080 Deploy application to Vercel (frontend) and cloud platform (backend)
-- [ ] T081 Verify all 8 constitution principles are implemented per .specify/memory/constitution.md
-- [ ] T082 Run full constitution compliance audit across frontend and backend
-- [ ] T083 Define and document "normal load" parameters (concurrent users, request rate) per spec.md L230-231 in Phase-2/docs/performance.md
+- [X] T073 [P] Update documentation in Phase-2/docs/
+- [X] T074 Code cleanup and refactoring across all components
+- [X] T075 Performance optimization of database queries and API responses
+- [X] T076 Security hardening including input validation and rate limiting
+- [X] T077 Add comprehensive error handling throughout the application
+- [X] T078 Run quickstart.md validation per plan.md
+- [X] T079 Add tests for critical user flows (if testing requested)
+- [X] T080 Deploy application to Vercel (frontend) and cloud platform (backend)
+- [X] T081 Verify all 8 constitution principles are implemented per .specify/memory/constitution.md
+- [X] T082 Run full constitution compliance audit across frontend and backend
+- [X] T083 Define and document "normal load" parameters (concurrent users, request rate) per spec.md L230-231 in Phase-2/docs/performance.md
 
 ---
 

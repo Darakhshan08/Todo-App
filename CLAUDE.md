@@ -246,13 +246,6 @@ The following agents are available for Phase 2 development when needed:
 - implementation-planner
 - quality-review-agent
 
-### Phase 2 Project Structure
-Phase 2 will be developed in the `Phase-2/` directory with the following structure:
-- `Phase-2/frontend/` - Next.js frontend application
-- `Phase-2/backend/` - FastAPI backend application
-- `Phase-2/specs/` - Specifications for Phase 2 features
-- `Phase-2/docker-compose.yml` - Local development environment
-
 ### Development Workflow for Phase 2
 Phase 2 follows the Spec-Driven Development (SDD) methodology with the Agentic Dev Stack workflow: Spec → Plan → Tasks → Implement
 1. Create Phase-2 directory structure
